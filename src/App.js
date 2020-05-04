@@ -1,28 +1,27 @@
-import React from 'react';
-import './App.css';
+import React, { Component } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import JsmpegPlayer from './components/JsmpegPlayer';
-
-const videoOptions = {
-  poster: 'https://cycjimmy.github.io/staticFiles/images/screenshot/big_buck_bunny_640x360.jpg'
-};
-
-const videoOverlayOptions = {autoplay: true};
-
-function App() {
-  return (
-
-    <div className="App">
-      <header className="App-header">
-        <JsmpegPlayer
-          wrapperClassName="video-wrapper"
-          videoUrl="ws://127.0.0.1:9999"
-          options={videoOptions}
-          overlayOptions={videoOverlayOptions}
-        />
-      </header>
-    </div>
-  );
+import Home from './components/Home';
+import About from './components/About';
+import Contact from './components/Contact';
+import Error from './components/Error';
+import Navigation from './components/Navigation';
+import Player from './components/Player.js';
+class App extends Component {
+  render() {
+    return (
+       <BrowserRouter>
+        <div>
+          <Navigation />
+            <Switch>
+             <Route path="/" component={Home} exact/>
+             <Route path="/player" component={Player}/>
+            <Route component={Error}/>
+           </Switch>
+        </div>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;
